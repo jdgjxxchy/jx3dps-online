@@ -52,6 +52,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Extract Docker metadata for UI
+
         id: meta
         uses: docker/metadata-action@v4
         with:
