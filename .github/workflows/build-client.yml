@@ -75,5 +75,5 @@ jobs:
           command: app set ${{ env.ARGOCD_APP_NAME }}
           options: |
             --server ${{ env.ARGOCD_SERVER }}
-            --kustomize-image client=${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+            --kustomize-image ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
             --auth-token ${{ secrets.ARGOCD_TOKEN }}
