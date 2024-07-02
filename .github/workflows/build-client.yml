@@ -4,7 +4,7 @@ on:
 
 env:
   ARGOCD_SERVER: argocd.arkwish.com
-  ARGOCD_APP_NAME: ddl-v2
+  ARGOCD_APP_NAME: jx3dps
 
 jobs:
   install:
@@ -68,12 +68,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.image_labels }}
 
-      # - name: Update ArgoCD Image
-      #   uses: clowdhaus/argo-cd-action/@main
-      #   with:
-      #     version: 2.4.7
-      #     command: app set ${{ env.ARGOCD_APP_NAME }}
-      #     options: |
-      #       --server ${{ env.ARGOCD_SERVER }}
-      #       --kustomize-image client=${{ fromJSON(steps.meta.outputs.json).tags[0] }}
-      #       --auth-token ${{ secrets.ARGOCD_TOKEN }}
+      - name: Update ArgoCD Image
+        uses: clowdhaus/argo-cd-action/@main
+        with:
+          version: 2.4.7
+          command: app set ${{ env.ARGOCD_APP_NAME }}
+          options: |
+            --server ${{ env.ARGOCD_SERVER }}
+            --kustomize-image client=${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+            --auth-token ${{ secrets.ARGOCD_TOKEN }}
